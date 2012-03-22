@@ -1,16 +1,3 @@
-String.prototype.each_byte = function(f){
-    var result = new Array;
-    for(var i = 0, l = this.length; i < l; i++){
-        var c = encodeURIComponent(this[i]);
-        if(c.length == 1){
-            result.push(c.charCodeAt(0).toString(16));
-        }else{
-            result = result.concat(c.split('%').slice(1));
-        }
-    }
-    return result;
-}
-
 String.prototype.bytes = function(f){
     for(var i = 0, l = this.length; i < l; i++){
         var c = encodeURIComponent(this[i]);
@@ -88,13 +75,6 @@ String.prototype.center = function(width, padding){
 }
 
 String.prototype.chars = function(f){
-    for(var i = 0, l = this.length; i < l; i++){
-        f(this[i]);
-    }
-    return this;
-}
-
-String.prototype.each_char = function(f){
     for(var i = 0, l = this.length; i < l; i++){
         f(this[i]);
     }
@@ -359,6 +339,46 @@ String.prototype.lstrip = function(){
 }
 
 String.prototype.succ = function(){
+    if(this.length == 0) return '';
+    if(this.length == 1 && this.match(/\W/)){
+        return String.fromCharCode(this.charCodeAt(0) + 1);
+    }
+    
+    var forward = function(c){
+        if(c == '9') return '0';
+        if(c == 'z') return 'a';
+        if(c == 'Z') return 'A';
+        return String.fromCharCode(c.charCodeAt(0) + 1);
+    }
+    
+    var success = true;
+    var count = 0;
+    var last;
+    var type;
+    var result = new Array;
+    
+    for(var i = 0, l = this.length; i < l; i++){
+        var s = this[this.length - i - 1];
+        if(success && s.match(/\w/)){
+            type = s;
+            last = i;
+            count += 1;
+            success = (s.match(/[9z]/i)) ? true : false;
+            result.push(forward(s));
+        }else{
+            result.push(s);
+        }
+    }
+    
+    if(success == true && count > 0){
+        if(type.match(/\d/)) result[last] = 10;
+        if(type.match(/[a-z]/)) result[last] = 'aa';
+        if(type.match(/[A-Z]/)) result[last] = 'AA';
+    }
+    return result.reverse().join('');
+}
+
+String.prototype.next = function(){
     if(this.length == 0) return '';
     if(this.length == 1 && this.match(/\W/)){
         return String.fromCharCode(this.charCodeAt(0) + 1);
@@ -773,8 +793,4 @@ String.prototype.tr_s = function(pattern, replace){
 
 String.prototype.upcase = function(){
     return this.toUpperCase();
-}
-
-String.prototype.downcase = function(){
-    return this.toLowerCase();
 }
