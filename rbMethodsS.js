@@ -194,7 +194,7 @@ String.prototype.dump = function(){
                 '13':'\\r',
                 '27':'\\e',
                 '34':'\\"',
-                '92':'\\\\',
+                '92':'\\\\'
             }[n];
         }else if(n < 32){
             dumped += (n < 10) ? '\\00' + n : '\\0' + n;
@@ -304,7 +304,7 @@ String.prototype.inspect = function(){
                 '13':'\\r',
                 '27':'\\e',
                 '34':'\\"',
-                '92':'\\\\',
+                '92':'\\\\'
             }[n];
         }else if(n < 32){
             dumped += (n < 10) ? '\\00' + n : '\\0' + n;
@@ -624,7 +624,7 @@ String.prototype.swapcase = function(){
 }
 
 String.prototype.to_f = function(){
-    return parseFloat(this.replace(/_/g, '');
+    return parseFloat(this.replace(/_/g, ''));
 }
 
 String.prototype.to_i = function(base){
