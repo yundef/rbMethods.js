@@ -33,4 +33,3 @@ to_s -> String
 transpose -> Array
 uniq -> Array
 values_at(*selectors) -> Array | nil
-zip(*lists) -> [[object]]
