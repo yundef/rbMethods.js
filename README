@@ -1,0 +1,6 @@
+rbMethods.js
+
+rbMethods is a JavaScript library that extends prototype of Array and String to append methods like Ruby.
+
+Author: yundef http://lostlinksearch.net/
+License: Released under MIT LIcense
