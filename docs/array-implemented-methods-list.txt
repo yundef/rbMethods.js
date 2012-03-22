@@ -1,0 +1,36 @@
+assoc(key) -> Array | nil
+at(pos) -> object
+choice -> object
+clear -> self
+clone -> Array
+dup -> Array
+collect
+compact -> Array
+delete(val) -> object | nil
+delete_at(pos) -> object | nil
+delete_if(function) -> self
+each(function) -> self
+each_index (function) -> self
+fetch(nth, ifnone) -> object
+fill(val) -> self
+first -> object | nil
+flatten(lv = nil) -> Array
+include(val) -> bool
+index(val) -> Integer | nil
+insert(nth, *val) -> self
+inspect -> String
+last(n) -> Array
+size -> Integer
+nitems -> Integer
+product(*lists) -> Array
+rassoc(obj) -> Array | nil
+reverse_each(function) -> self
+rindex(val) -> Integer | nil
+shuffle -> Array
+to_a -> Array
+to_ary -> self
+to_s -> String
+transpose -> Array
+uniq -> Array
+values_at(*selectors) -> Array | nil
+zip(*lists) -> [[object]]

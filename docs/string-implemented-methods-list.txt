@@ -1,0 +1,47 @@
+each_byte {|byte| ... } -> self
+bytes {|byte| ... } -> self
+capitalize -> String
+casecmp(other) -> Integer | nil
+center(width, padding = ' ') -> String
+each_char {|cstr| block } -> self
+chars {|cstr| block } -> self
+chomp(rs = $/) -> String
+chop -> String
+count(*chars) -> Integer
+delete(*strs) -> String
+downcase -> String
+dump -> String
+each_line(rs = $/) {|line| ... } -> ()
+lines(rs = $/) {|line| ... } -> ()
+empty -> bool
+end_with(str) -> bool
+eql(other) -> bool
+gsub(pattern, replace) -> String
+hex -> Integer
+include(substr) -> bool
+index(pattern, pos = 0) -> Integer
+insert(pos, other) -> ()
+inspect -> String
+ljust(width, padding = ' ') -> String
+lstrip -> String
+succ -> String
+next -> String
+oct -> Integer
+partition(sep) -> [String, String, String]
+reverse -> String
+rindex(pattern, pos = self.size) -> Integer | nil
+rjust(width, padding = ' ') -> String
+rpartition(sep) -> [String, String, String]
+rstrip -> String
+scan(re) -> [String] | [[String]]
+squeeze(*chars) -> String
+start_with(str) -> bool
+strip -> String
+swapcase -> String
+to_f -> Float
+to_i(base = 10) -> Integer
+to_s -> String
+to_str -> String
+tr(pattern, replace) -> String
+tr_s(search, replace) -> String [redefined by jcode]
+upcase -> String
