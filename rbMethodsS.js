@@ -340,9 +340,6 @@ String.prototype.lstrip = function(){
 
 String.prototype.succ = function(){
     if(this.length == 0) return '';
-    if(this.length == 1 && this.match(/\W/)){
-        return String.fromCharCode(this.charCodeAt(0) + 1);
-    }
     
     var forward = function(c){
         if(c == '9') return '0';
@@ -368,6 +365,12 @@ String.prototype.succ = function(){
         }else{
             result.push(s);
         }
+    }
+    
+    if(count == 0){
+        var l = this.length - 1;
+        var lastChar = String.fromCharCode(this.charCodeAt(l) + 1);
+        return this.substring(0, l) + lastChar;
     }
     
     if(success == true && count > 0){
@@ -380,9 +383,6 @@ String.prototype.succ = function(){
 
 String.prototype.next = function(){
     if(this.length == 0) return '';
-    if(this.length == 1 && this.match(/\W/)){
-        return String.fromCharCode(this.charCodeAt(0) + 1);
-    }
     
     var forward = function(c){
         if(c == '9') return '0';
@@ -408,6 +408,12 @@ String.prototype.next = function(){
         }else{
             result.push(s);
         }
+    }
+    
+    if(count == 0){
+        var l = this.length - 1;
+        var lastChar = String.fromCharCode(this.charCodeAt(l) + 1);
+        return this.substring(0, l) + lastChar;
     }
     
     if(success == true && count > 0){

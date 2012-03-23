@@ -144,7 +144,11 @@ Array.prototype.include = function(val){
 
 Array.prototype.index = function(val){
     for(var i = 0, l = this.length; i < l; i++){
-        if(this[i] == val) return i;
+        if(typeof val == 'function'){
+            if(val(this[i]) === true) return i;
+        }else{
+            if(this[i] == val) return i;
+        }
     }
     return null;
 };
