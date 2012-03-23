@@ -144,7 +144,11 @@ Array.prototype.include = function(val){
 
 Array.prototype.index = function(val){
     for(var i = 0, l = this.length; i < l; i++){
-        if(this[i] == val) return i;
+        if(typeof val == 'function'){
+            if(val(this[i]) === true) return i;
+        }else{
+            if(this[i] == val) return i;
+        }
     }
     return null;
 };
@@ -564,7 +568,7 @@ String.prototype.dump = function(){
                 '13':'\\r',
                 '27':'\\e',
                 '34':'\\"',
-                '92':'\\\\',
+                '92':'\\\\'
             }[n];
         }else if(n < 32){
             dumped += (n < 10) ? '\\00' + n : '\\0' + n;
@@ -674,7 +678,7 @@ String.prototype.inspect = function(){
                 '13':'\\r',
                 '27':'\\e',
                 '34':'\\"',
-                '92':'\\\\',
+                '92':'\\\\'
             }[n];
         }else if(n < 32){
             dumped += (n < 10) ? '\\00' + n : '\\0' + n;
@@ -710,9 +714,6 @@ String.prototype.lstrip = function(){
 
 String.prototype.succ = function(){
     if(this.length == 0) return '';
-    if(this.length == 1 && this.match(/\W/)){
-        return String.fromCharCode(this.charCodeAt(0) + 1);
-    }
     
     var forward = function(c){
         if(c == '9') return '0';
@@ -738,6 +739,12 @@ String.prototype.succ = function(){
         }else{
             result.push(s);
         }
+    }
+    
+    if(count == 0){
+        var l = this.length - 1;
+        var lastChar = String.fromCharCode(this.charCodeAt(l) + 1);
+        return this.substring(0, l) + lastChar;
     }
     
     if(success == true && count > 0){
@@ -750,9 +757,6 @@ String.prototype.succ = function(){
 
 String.prototype.next = function(){
     if(this.length == 0) return '';
-    if(this.length == 1 && this.match(/\W/)){
-        return String.fromCharCode(this.charCodeAt(0) + 1);
-    }
     
     var forward = function(c){
         if(c == '9') return '0';
@@ -778,6 +782,12 @@ String.prototype.next = function(){
         }else{
             result.push(s);
         }
+    }
+    
+    if(count == 0){
+        var l = this.length - 1;
+        var lastChar = String.fromCharCode(this.charCodeAt(l) + 1);
+        return this.substring(0, l) + lastChar;
     }
     
     if(success == true && count > 0){
@@ -994,7 +1004,7 @@ String.prototype.swapcase = function(){
 }
 
 String.prototype.to_f = function(){
-    return parseFloat(this.replace(/_/g, '');
+    return parseFloat(this.replace(/_/g, ''));
 }
 
 String.prototype.to_i = function(base){
